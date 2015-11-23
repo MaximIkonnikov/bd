@@ -9,16 +9,6 @@ references Clients (ID_CLIENT);
 
 drop table Accounting;
 
-create table TicketsAccounting(
-    ID_CLIENT int not null
-    ,ID_TICKET int not null
-    ,BuyDate date
-);
-
-alter table TicketsAccounting add constraint acc_to_client foreign key (ID_CLIENT)
-references Clients (ID_CLIENT);
-alter table TicketsAccounting add constraint acc_to_stickets foreign key (ID_TICKET)
-references SeasonTickets (ID_TICKET);
 
 create table Visits(
     ID_CLIENT int not null

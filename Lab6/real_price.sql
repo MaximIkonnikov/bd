@@ -12,7 +12,6 @@ begin
 select clients.id_discount from clients
     where new.id_client = clients.id_client
     into :discid;
-    if (discid = null) then exit;
 select discounts.discountvalue from discounts, clients where
     clients.id_discount = discounts.id_discount and
     new.id_client = clients.id_client
@@ -20,6 +19,12 @@ select discounts.discountvalue from discounts, clients where
 select TICKETTYPES.price from tickettypes where
     tickettypes.id_type = new.id_type
     into :fprice;
+if (discid=1 or discid=2 or discid=3)  then begin
 rprice = fprice - (fprice*discval)/100;
+end
+else begin
+rprice = fprice;
+end
 new.paid = rprice;
 end;
+
